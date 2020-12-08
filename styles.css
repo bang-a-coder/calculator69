@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap');
+
+body {
+    background-color: #f7f7f7;
+    font-family: 'Reem Kufi', sans-serif;
+
+    
+}
+
+.daddy {
+    width: 450px;
+    height: 500px;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    padding: 20px;
+}
+
+.screen {
+    height: 100px;
+    background-color: lightblue;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.numpad {
+    width: 258px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+    
+}
+
+.button {
+    width: 70px;
+    height: 70px;
+    margin: 8px;
+    text-align: center;
+    line-height: 70px;
+    font-size: 32px;
+    border-radius: 100%;
+    border-radius: 50%;
+    background: #f7f7f7;
+    box-shadow:  5px 5px 11px #e6e6e6, 
+             -5px -5px 11px #ffffff;
+
+}
+
+.button:hover {
+    border-radius: 50%;
+background: linear-gradient(145deg, #dedede, #ffffff);
+box-shadow:  5px 5px 11px #e6e6e6, 
+             -5px -5px 11px #ffffff;
+             transition: 0.8s;
+}
+
+.button:active {
+    border-radius: 50%;
+background: #f7f7f7;
+box-shadow: inset 5px 5px 11px #e6e6e6, 
+            inset -5px -5px 11px #ffffff;
+}
+
+
+
+
+.operpad {
+    width: 175px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+    align-content: stretch;
+    position: absolute;
+    right: 10px;
+    top: 186px;
+}
+
+#equal {
+    width: 152px;
+    border-radius: 70px;
+}
+
