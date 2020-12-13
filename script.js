@@ -25,14 +25,12 @@ for (i = 0; i < numButtons.length; i++) {                       //Number eventLi
 for (i = 0; i < operButttons.length; i++){                      //Operator eventListenser set
     operButttons[i].addEventListener(`click`, function() {
         inputScreen.innerHTML += this.id
-
         if (this.id === `+`) {
             toDo.push(input)
             input = ``
         } else {
             input += this.id
         }
-
     })
 }
 
@@ -57,12 +55,14 @@ function division(expression) {
         console.log(numbersString)
     const numbers = numbersString.map(noStr => +noStr);
         console.log(numbers)
-    const initialValue = numbers[0]; 
+    const initialValue = 1.0; 
         console.log(numbers[0])
 	const quotient = numbers.reduce((result, no) => {
-        return result / no}, initialValue);                 // Buggy shit, gives slitly worng number
-	return quotient;
+        console.log(result , no)
+        return result / no});                 // Buggy shit, gives slitly worng number
+        return quotient;
 }
+
 
 function operate(a){
     if (input != ``) {
@@ -70,7 +70,7 @@ function operate(a){
     }
 
     for (i=0; i < a.length; i++) {
-        if (a[i] && a[i].includes(`*`)) {
+        if (a[i] && a[i].includes(`*`)) {                  // has to be this way cause the second argument isn't recognised on its own for some reason
             result += multiplication(a[i])
         } else if (a[i] && a[i].includes(`/`)){
             result += division(a[i])
@@ -82,6 +82,12 @@ function operate(a){
     resultScreen.innerHTML = result
 }
 
-equalButton.addEventListener(`click`, function() {
+equalButton.addEventListener(`click`, function() {              //RUN CALCULATION
     operate(toDo)
 })
+
+window.addEventListener(`keydown`, clickButton)
+
+function clickButton(e) {
+    
+}
