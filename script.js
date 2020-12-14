@@ -18,19 +18,13 @@ for (i = 0; i < numButtons.length; i++) {                       //Number eventLi
     numButtons[i].addEventListener(`click`, function() {
         inputScreen.innerHTML += `${this.id.toString()}`
         input += this.id
-        console.log(input)
     })
 }
 
 for (i = 0; i < operButttons.length; i++){                      //Operator eventListenser set
     operButttons[i].addEventListener(`click`, function() {
         inputScreen.innerHTML += this.id
-        if (this.id === `+`) {
-            toDo.push(input)
-            input = ``
-        } else {
-            input += this.id
-        }
+        input += this.id
     })
 }
 
@@ -47,47 +41,43 @@ function multiplication(expression) {
 	const numbers = numbersString.map(noStr => +noStr);
 	const initialValue = 1.0; 
 	const product = numbers.reduce((acc, no) => acc * no, initialValue);
-	return product;
+    
+    return product;
 }
 
 function division(expression) {
     const numbersString = expression.split('/');
-        console.log(numbersString)
     const numbers = numbersString.map(noStr => +noStr);
-        console.log(numbers)
-    const initialValue = 1.0; 
-        console.log(numbers[0])
 	const quotient = numbers.reduce((result, no) => {
-        console.log(result , no)
         return result / no});                 // Buggy shit, gives slitly worng number
-        return quotient;
+    
+    return quotient;
 }
 
-
-function operate(a){
-    if (input != ``) {
-        toDo.push(input)
-    }
-
-    for (i=0; i < a.length; i++) {
-        if (a[i] && a[i].includes(`*`)) {                  // has to be this way cause the second argument isn't recognised on its own for some reason
-            result += multiplication(a[i])
-        } else if (a[i] && a[i].includes(`/`)){
-            result += division(a[i])
+function doMath(array) {
+    for (i=0; i < array.length; i++) {
+        if (array[i] && array[i].includes(`*`)) {                  // has to be this way cause the second argument isn't recognised on its own for some reason
+            result += multiplication(array[i])
+        } else if (array[i] && array[i].includes(`/`)){
+            result += division(array[i])
         }
         else {
-            result += parseInt(a[i])
+            result += parseInt(array[i])
         }
     }
-    resultScreen.innerHTML = result
+
+    return result
+}
+
+function execute(a){
+    const negativeAdj = a.replaceAll(`-`,`+-`)
+        console.log(negativeAdj)
+    const numbersString = negativeAdj.split(`+`)
+        console.log(numbersString)
+
+    resultScreen.innerHTML = doMath(numbersString)
 }
 
 equalButton.addEventListener(`click`, function() {              //RUN CALCULATION
-    operate(toDo)
+    execute(input)
 })
-
-window.addEventListener(`keydown`, clickButton)
-
-function clickButton(e) {
-    
-}
