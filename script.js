@@ -5,7 +5,7 @@ let numButtons = document.querySelectorAll(".number")
 let operButttons = document.querySelectorAll(`.operator`)
 
 let clearButton = document.getElementById(`clear`)
-let backspaceButton = document.getElementById(`backspace`)
+let backspaceButton = document.querySelector(`#backspace`)
 let equalButton = document.querySelector(`#equal`)
 
 let toDo = []
@@ -34,6 +34,11 @@ clearButton.addEventListener(`click`, function(){               //Clean screen e
     toDo = []
     result = 0
     resultScreen.innerHTML = `0`
+})
+
+backspaceButton.addEventListener(`click`, function() {             // BACKSPACE
+    input = input.slice(0, -1)
+    inputScreen.innerHTML = inputScreen.innerHTML.slice(0, -1)
 })
 
 function multiplication(expression) {
