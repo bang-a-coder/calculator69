@@ -70,19 +70,17 @@ function doMath(array) {
             result += parseInt(array[i])
         }
     }
-
     return result
 }
 
-function execute(a){
+function operate(a){
     const negativeAdj = a.replaceAll(`-`,`+-`)
-        console.log(negativeAdj)
     const numbersString = negativeAdj.split(`+`)
-        console.log(numbersString)
 
     resultScreen.innerHTML = doMath(numbersString)
 }
 
 equalButton.addEventListener(`click`, function() {              //RUN CALCULATION
-    execute(input)
+    operate(input)
 })
+

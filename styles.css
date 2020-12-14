@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 body {
     background-color: #f7f7f7;
     font-family: 'Reem Kufi', sans-serif;
@@ -8,7 +7,7 @@ body {
 }
 
 .daddy {
-    width: 450px;
+    width: 600px;
     height: 500px;
     border-radius: 10px;
     position: fixed;
@@ -22,8 +21,8 @@ body {
 .screen {
     height: 100px;
     border-radius: 10px;
-    //border: solid 1px black;
-    width: 100%;
+    width: 70%;
+    margin: auto;
     margin-bottom: 50px;
     padding: 0;
     overflow: hidden;
@@ -52,7 +51,7 @@ body {
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: stretch;
-	align-content: stretch;
+    align-content: stretch;
     
 }
 
@@ -68,7 +67,13 @@ body {
     background: #f7f7f7;
     box-shadow:  5px 5px 11px #e6e6e6, 
              -5px -5px 11px #ffffff;
-
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
 }
 
 .button:hover {
@@ -88,8 +93,6 @@ body {
 }
 
 
-
-
 .operpad {
     width: 175px;
     display: flex;
@@ -103,8 +106,33 @@ body {
     top: 170px;
 }
 
+.secondary-operpad {
+    width: 175px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+    align-content: stretch;
+    position: absolute;
+    left: 10px;
+    top: 170px;
+    
+}
+
 #equal {
     width: 152px;
     border-radius: 70px;
+}
+
+.controls-parent {
+    width: 100%;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: stretch;
+	align-content: center;
+
 }
 
