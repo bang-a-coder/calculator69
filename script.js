@@ -8,10 +8,7 @@ let clearButton = document.getElementById(`clear`)
 let backspaceButton = document.querySelector(`#backspace`)
 let equalButton = document.querySelector(`#equal`)
 
-let toDo = []
 let input = ``                                                        // temporary thingy to keep inputs between operators
-
-let result = 0
 resultScreen.innerHTML = `0`
 
 for (i = 0; i < numButtons.length; i++) {                       //Number eventListerner set
@@ -34,6 +31,7 @@ clearButton.addEventListener(`click`, function(){               //Clean screen e
     toDo = []
     result = 0
     resultScreen.innerHTML = `0`
+    console.clear()
 })
 
 backspaceButton.addEventListener(`click`, function() {             // BACKSPACE
@@ -52,30 +50,55 @@ function multiplication(expression) {
 
 function division(expression) {
     const numbersString = expression.split('/');
+        console.log(numbersString)
     const numbers = numbersString.map(noStr => +noStr);
+        console.log(numbers)
 	const quotient = numbers.reduce((result, no) => {
         return result / no});                 // Buggy shit, gives slitly worng number
     
     return quotient;
 }
 
+function parenthesis(expression){
+    const cleanedString = expression.substring(1, expression.length-1)
+        console.log(cleanedString)
+    const outcome = doMath(cleanedString)
+
+    return outcome
+    
+}
+
 function doMath(array) {
+    let result = 0
     for (i=0; i < array.length; i++) {
-        if (array[i] && array[i].includes(`*`)) {                  // has to be this way cause the second argument isn't recognised on its own for some reason
+        if (array[i].indexOf("(") !== -1) {
+            console.log(`found parenth`)
+            const cleanedString = new Array(array[i].slice(1,-1))
+            console.log(cleanedString)
+            console.log(typeof(cleanedString))
+            // const numbers = cleanedString.map(noStr => +noStr);
+
+            // console.log(numbers[0])
+
+            result += doMath(cleanedString)
+        } else if (array[i] && array[i].includes(`*`)) {                  // has to be this way cause the second argument isn't recognised on its own for some reason
             result += multiplication(array[i])
         } else if (array[i] && array[i].includes(`/`)){
             result += division(array[i])
-        }
-        else {
+        } else {
             result += parseInt(array[i])
         }
+        console.log(`result = ` + result)
     }
     return result
 }
-
+// 5+(5*2)
 function operate(a){
+    console.log(a)
     const negativeAdj = a.replaceAll(`-`,`+-`)
+    console.log(negativeAdj)
     const numbersString = negativeAdj.split(`+`)
+        console.log(numbersString)
 
     resultScreen.innerHTML = doMath(numbersString)
 }
