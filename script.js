@@ -68,31 +68,6 @@ function parenthesis(expression){
     
 }
 
-// function doMath(array) {
-//     let result = 0
-//     for (i=0; i < array.length; i++) {
-//         if (array[i].indexOf("(") !== -1) {
-//             console.log(`found parenth`)
-//             const cleanedString = new Array(array[i].slice(1,-1))
-//             console.log(cleanedString)
-//             console.log(typeof(cleanedString))
-//             // const numbers = cleanedString.map(noStr => +noStr);
-
-//             // console.log(numbers[0])
-
-            
-//             result += doMath(cleanedString)
-//         } else if (array[i] && array[i].includes(`*`)) {                  // has to be this way cause the second argument isn't recognised on its own for some reason
-//             result += multiplication(array[i])
-//         } else if (array[i] && array[i].includes(`/`)){
-//             result += division(array[i])
-//         } else {
-//             result += parseInt(array[i])
-//         }
-//         console.log(`result = ` + result)
-//     }
-//     return result
-// }
 function doMath(a) {
     console.log(a)
     const negativeAdj = a.replaceAll(`-`, `+-`) // SUBSTRACTION
@@ -137,31 +112,18 @@ function parenthDetective(str) {
     return array
 }
 
-// (5*(5+2)) =>
-
 function replaceRange(s, start, end, substitute) {
     return s.substring(0, start) + substitute + s.substring(end);
 }
-// var str = "this is a string";
-// var newString = replaceRange(str, 0, 4, "that"); // "that is a string"
 
 function operate(a){
-
     let pd = parenthDetective(a)
     if (pd == null) return doMath(a)
-
     let trip = operate(a.slice(pd[0]+1, pd[1]))
-    console.log(trip)
-    let bb = replaceRange(a, pd[0], pd[1]+1, trip.toString())
-    console.log(bb)
-    return operate(bb)
-
-
-   
-    // resultScreen.innerHTML = doMath(numbersString)
+    return operate(replaceRange(a, pd[0], pd[1] + 1, trip.toString()))
 }
 
 equalButton.addEventListener(`click`, function() {              //RUN CALCULATION
-    operate(input)
+    resultScreen.innerHTML = operate(input)
 })
 
