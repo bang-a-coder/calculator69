@@ -50,27 +50,21 @@ function multiplication(expression) {
 
 function division(expression) {
     const numbersString = expression.split('/');
-        console.log(numbersString)
     const numbers = numbersString.map(noStr => +noStr);
-        console.log(numbers)
 	const quotient = numbers.reduce((result, no) => {
-        return result / no});                 // Buggy shit, gives slitly worng number
+        return result / no});                 
     
     return quotient;
 }
 
-function parenthesis(expression){
-    const cleanedString = expression.substring(1, expression.length-1)
-        console.log(cleanedString)
-    const outcome = doMath(cleanedString)
-
-    return outcome
-    
+function squareRoot(expression) {
+    let cleaned = expression.replace('√', '')
+    return Math.sqrt(cleaned)
 }
 
 function doMath(a) {
     console.log(a)
-    const negativeAdj = a.replaceAll(`-`, `+-`) // SUBSTRACTION
+    const negativeAdj = a.replaceAll(`-`, `+-`) 
     const array = negativeAdj.split(`+`) 
 
     let result = 0
@@ -79,6 +73,10 @@ function doMath(a) {
             result += multiplication(array[i])
         } else if (array[i] && array[i].includes(`/`)){
             result += division(array[i])
+        } else if (array[i] && array[i].includes(`√`)) {
+            result += squareRoot(array[i])
+            console.log(array[i])
+            console.log(typeof(array[i]))
         } else {
             result += parseInt(array[i])
         }
@@ -119,6 +117,7 @@ function replaceRange(s, start, end, substitute) {
 function operate(a){
     let pd = parenthDetective(a)
     if (pd == null) return doMath(a)
+
     let trip = operate(a.slice(pd[0]+1, pd[1]))
     return operate(replaceRange(a, pd[0], pd[1] + 1, trip.toString()))
 }
@@ -126,4 +125,3 @@ function operate(a){
 equalButton.addEventListener(`click`, function() {              //RUN CALCULATION
     resultScreen.innerHTML = operate(input)
 })
-
