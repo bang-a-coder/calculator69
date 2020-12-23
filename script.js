@@ -41,7 +41,8 @@ backspaceButton.addEventListener(`click`, function() {             // BACKSPACE
 
 function multiplication(expression) {
 	const numbersString = expression.split('*');
-	const numbers = numbersString.map(noStr => +noStr);
+    const numbers = numbersString.map(noStr => +noStr);
+    console.log(numbers)
 	const initialValue = 1.0; 
 	const product = numbers.reduce((acc, no) => acc * no, initialValue);
     
@@ -84,6 +85,8 @@ function doMath(a) {
     const negativeAdj = a.replaceAll(`-`, `+-`) 
     const array = negativeAdj.split(`+`) 
 
+    console.log(array)
+
     let result = 0
     for (i=0; i < array.length; i++) {
         if (array[i] && array[i].includes(`*`)) {                  // has to be this way cause the second argument isn't recognised on its own for some reason
@@ -95,11 +98,11 @@ function doMath(a) {
         } else if (array[i] && array[i].includes(`^`)) {
             result += exponent(array[i])
         } else if (array[i] && array[i].includes(`!`)) {
-            let cleaned = array[i].replace('!', '')
+            let cleaned = array[i].replace('!', '')                 // Cleaning it here, cause the function is recursive and cleaning it there fills up the stack for some reason
 
             result += factorialTrippingBalls(cleaned)
         } else {
-            result += parseInt(array[i])
+            result += parseFloat (array[i])
         }
         console.log(`result = ` + result)
     }
