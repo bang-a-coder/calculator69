@@ -62,6 +62,16 @@ function squareRoot(expression) {
     return Math.sqrt(cleaned)
 }
 
+function exponent(expression) {
+    const numbersString = expression.split('^');
+    const numbers = numbersString.map(noStr => +noStr);
+    const outcome = numbers.reduce((result, no) => {
+        return result ** no
+    });
+
+    return outcome;
+}
+
 function doMath(a) {
     console.log(a)
     const negativeAdj = a.replaceAll(`-`, `+-`) 
@@ -75,8 +85,8 @@ function doMath(a) {
             result += division(array[i])
         } else if (array[i] && array[i].includes(`√`)) {
             result += squareRoot(array[i])
-            console.log(array[i])
-            console.log(typeof(array[i]))
+        } else if (array[i] && array[i].includes(`^`)) {
+            result += exponent(array[i])
         } else {
             result += parseInt(array[i])
         }
@@ -115,7 +125,9 @@ function replaceRange(s, start, end, substitute) {
 }
 
 function operate(a){
+    console.log(`input is` + a)
     let pd = parenthDetective(a)
+    console.log(pd)
     if (pd == null) return doMath(a)
 
     let trip = operate(a.slice(pd[0]+1, pd[1]))
