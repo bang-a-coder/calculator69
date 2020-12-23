@@ -72,6 +72,13 @@ function exponent(expression) {
     return outcome;
 }
 
+function factorialTrippingBalls(expression) {    
+    if (expression === 0) {
+        return 1;
+    }
+    return expression * factorialTrippingBalls(expression - 1);
+}
+
 function doMath(a) {
     console.log(a)
     const negativeAdj = a.replaceAll(`-`, `+-`) 
@@ -87,6 +94,10 @@ function doMath(a) {
             result += squareRoot(array[i])
         } else if (array[i] && array[i].includes(`^`)) {
             result += exponent(array[i])
+        } else if (array[i] && array[i].includes(`!`)) {
+            let cleaned = array[i].replace('!', '')
+
+            result += factorialTrippingBalls(cleaned)
         } else {
             result += parseInt(array[i])
         }
