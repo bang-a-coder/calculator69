@@ -7,6 +7,7 @@ let operButttons = document.querySelectorAll(`.operator`)
 let clearButton = document.getElementById(`clear`)
 let backspaceButton = document.querySelector(`#backspace`)
 let equalButton = document.querySelector(`#equal`)
+let ansButton = document.querySelector('#Ans')
 
 let input = ``                                                        // temporary thingy to keep inputs between operators
 resultScreen.innerHTML = `0`
@@ -28,7 +29,6 @@ for (i = 0; i < operButttons.length; i++){                      //Operator event
 clearButton.addEventListener(`click`, function(){               //Clean screen eventListerner Set
     inputScreen.innerHTML = ''
     input = ``
-    toDo = []
     result = 0
     resultScreen.innerHTML = `0`
     console.clear()
@@ -151,6 +151,18 @@ equalButton.addEventListener(`click`, function() {              //RUN CALCULATIO
     resultScreen.innerHTML = operate(input)
     niceEasterEgg(operate(input))
 })
+
+ansButton.addEventListener(`click`, function(){
+    useAnswer(resultScreen.innerHTML)
+})
+
+function useAnswer(result){
+    console.log('runnn')
+    input = result
+    inputScreen.innerHTML = result
+    resultScreen.innerHTML = ''
+}
+
 
 const niceCock = document.querySelector('.nice')
 
