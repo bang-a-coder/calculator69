@@ -99,7 +99,6 @@ function doMath(a) {
             result += exponent(array[i])
         } else if (array[i] && array[i].includes(`!`)) {
             let cleaned = array[i].replace('!', '')                 // Cleaning it here, cause the function is recursive and cleaning it there fills up the stack for some reason
-
             result += factorialTrippingBalls(cleaned)
         } else {
             result += parseFloat (array[i])
@@ -150,4 +149,17 @@ function operate(a){
 
 equalButton.addEventListener(`click`, function() {              //RUN CALCULATION
     resultScreen.innerHTML = operate(input)
+    niceEasterEgg(operate(input))
 })
+
+const niceCock = document.querySelector('.nice')
+
+function niceEasterEgg(result){
+    if (result === 420 || result === 69){
+        niceCock.classList.add('slide-in')
+        setTimeout(() => {
+            niceCock.classList.remove('slide-in')
+            niceCock.classList.add('slide-out')
+        }, 1000);
+    }
+}
