@@ -6,7 +6,7 @@ let operButttons = document.querySelectorAll(`.operator`)
 
 let clearButton = document.getElementById(`clear`)
 let backspaceButton = document.querySelector(`#backspace`)
-let equalButton = document.querySelector(`#equal`)
+let equalButton = document.querySelector(`#Enter`)
 let ansButton = document.querySelector('#Ans')
 
 let input = ``                                                        // temporary thingy to keep inputs between operators
@@ -74,9 +74,7 @@ function exponent(expression) {
 }
 
 function factorialTrippingBalls(expression) {    
-    if (expression === 0) {
-        return 1;
-    }
+    if (expression === 0) return 1
     return expression * factorialTrippingBalls(expression - 1);
 }
 
@@ -175,3 +173,21 @@ function niceEasterEgg(result){
         }, 1000);
     }
 }
+
+window.addEventListener(`keydown`, pressButton)
+
+function pressButton(e) {
+    const key = document.querySelector(`div[id="${e.key}"]`);
+    eventFire(key, 'click')
+}
+
+function eventFire(el, etype) {
+    if (el.fireEvent) {
+        el.fireEvent('on' + etype);
+    } else {
+        var evObj = document.createEvent('Events');
+        evObj.initEvent(etype, true, false);
+        el.dispatchEvent(evObj);
+    }
+}
+
