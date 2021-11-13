@@ -10,8 +10,9 @@ body {
     width: 600px;
     height: 500px;
     border-radius: 10px;
-    position: fixed;
-    top: 50%;
+    position: relative;
+    /* top: 50%; */
+    margin-top: 300px;
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
